@@ -1,0 +1,168 @@
+
+
+.lang-selector{
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  padding: 10px;
+  width: 80%;
+  transition: all 0.4s;
+  margin: 10px;
+  border: 1px solid #F3F3F3;
+  border-radius: 5px;
+  
+}
+.btn img{
+    width:19px;
+    height: 19px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+.lang-selector:hover {
+  display: none;
+}
+.fa-chevron-down{
+  background: #ddd;
+  border-radius: 50%;
+  padding: 2px;
+}
+.fb-btn{
+  color: #fff;
+}
+.fb-btn a{
+  color: #fff;
+  &:visited{
+    color: #fff;
+  }
+  &:hover{
+    color: #fff;
+  }
+}
+.btn{
+  width: 100%;
+  padding: 10px;
+  border:none;
+  cursor: pointer;
+  border-radius :20px;
+  background: #090C25;
+  font-size: 1rem;
+  color: #fff;
+  outline: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 0;
+}
+.vote-btn .fa-brands{
+  margin: 0 10px;
+  font-size: 1.3rem;
+
+}
+.fa-instagram{
+  color:#FF8B0B;
+}
+a{
+  text-decoration: none;
+  & :hover{
+    color: #fff;
+  }
+  &:visited{
+    color: #fff;
+  }
+  
+}
+.output{
+  font-size: 1rem;
+}
+.fa-facebook{
+  color: #0064E0;
+}
+img{
+  width: 100%;
+}
+body{
+  background: #ddd;
+  font-size: 15px;
+  font-family: Poppins, sans-serif;
+  font-style:italic;
+}
+p{
+  font-family: poppins, sans-serif;
+}
+button{
+  font-family: poppins, sans-serif;
+  font-style: italic;
+}
+.card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.img-card{
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  box-shadow: 1px 1px 8px #F3F3F3;
+}
+*{
+  box-sizing: border-box;
+}
+.lang-selector{
+  
+}
+.img-card .card-img{
+  width: 100%;
+  height: 200px;
+  position: relative;
+  margin: 0;
+  border-radius: 10px 10px 0 0;
+}
+
+img{
+  
+}
+.av{
+  width: 50px;
+  height: 50px ;
+  
+}
+h1{
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 150px;
+  color: #fff;
+  padding: 10px;
+  font-size: 1.4rem;
+  font-family: helvetica;
+  text-transform: uppercase;
+}
+.tit{
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+}
+.vote-profile{
+  display: flex;
+  align-items: center;
+}
+.txt p{
+  line-height: 1.4rem;
+}
+.desc{
+  margin: 0 5px ;
+}
+.contents{
+  padding: 10px;
+  margin: 0;
+
+}
+.profile-txt{
+  margin: 0 4px;
+  
+}

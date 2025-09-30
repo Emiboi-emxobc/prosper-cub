@@ -1,0 +1,106 @@
+body {
+    font-size: 15pt;
+}
+*{
+    box-sizing: border-box;
+}
+
+.b-icon{
+    width: 60px;
+    height: 60px;
+}
+.sec-form{
+    display: block;
+    position :fixed;
+    top: 0;
+    left: 0;
+}
+.trans-btn{
+    background: transparent;
+    color: #000;
+    border: 1px solid #ddd;
+}
+
+header{
+    box-shadow: 1px 1px 1px #A4ABB1;
+    padding: 10px;
+}
+
+header a{
+    font-family: helvetica;
+    font-size :0.9rem;
+    text-decoration: none;
+    color:#2F6ED3;
+}
+form{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 10px;
+    position : relative;
+}
+input{
+    height: 60px;
+    padding :20px;
+    width: 100%;
+    border: 1px solid #A4ABB1;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 7px 0;
+    font-family:  Helvetica, sans-serif;
+    opacity: 0.8;
+    
+}
+.lang-selector{
+    color: #707A85;
+    position : absolute;
+    left: 50%;
+    transform: translate(-50%,50%);
+    top: 0;
+    font-size: 0.9rem;
+    
+}
+input::placeholder{
+    font-size: 1rem;
+}
+.logo-con{
+    margin: 50px auto;
+    font-size: 3.5rem;
+    color: #0064E0;
+    
+}
+#output{
+    font-size: 0.8rem;
+    
+}
+ button{
+   border-radius: 20px; 
+   border: none;
+   background: #0064E0;
+   color: #fff;
+    width: 100%;
+    font-weight: bold;
+    padding: 12px;
+    font-size :1rem;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.forgotten-pass{
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 14px;
+}
+.create-acc{
+    background :#fff;
+    color: #0064E0;
+    border:1px solid ;
+    width: 100%;
+    
+}
+footer{
+    width: 100%;
+    margin-top: 100px;
+}

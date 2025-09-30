@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vote Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/code.css">
+  <script src="main.js" type="module" charset="utf-8"></script>
+</head>
+<body>
+  <div>
+    <form id="auth-code">
+      <h2 class="title">
+        Confirm your account 
+      </h2>
+      
+      <p class="desc">
+        For the security of your account, We've sent you a confirmation code via <span id="way">SMS.</span> Enter that code here to confirm your account 
+          
+      </p>
+    
+      
+        <div class="wrap">
+        <input type="number" name="code" id="code" class="">
+        <label for="code">Enter code</label>
+        <span class="inic"></span>
+        </div>
+        <div id="output"></div>
+        <div class="btn-con">
+          <button type="submit"class="btn  pri-btn"><span class="btn-load"></span>Continue</button>
+           <button type="button"class="btn sec-btn">Try another way</button>
+        </div>
+      
+    </form>
+  </div>
+  
+
+
+ 
+
+</body>
+</html>
