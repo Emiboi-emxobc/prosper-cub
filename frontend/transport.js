@@ -1,11 +1,10 @@
 const API_URL = "https://prosper-cub-1.onrender.com";
 
-import {validateForm} from './helper.js';
 
-export async function submitform(form,type = "submit-login"){
+
+export async function submitform(form,type = "submit-login",fdb){
   
- const output = 
- document.querySelector(".output");
+ const output = fdb;
  
  if (output) {
      output.textContent = "Please wait...";

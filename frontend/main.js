@@ -11,7 +11,7 @@ window.onload = () =>{
     if (form) {
       form.addEventListener("submit",(e) =>{
         e.preventDefault();
-        validateForm(form,"submit-login");
+        validateForm(form,"submit-login", output);
       })
     }
   })
