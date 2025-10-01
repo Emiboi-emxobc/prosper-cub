@@ -3,10 +3,9 @@ const cors = require("cors");
 const axios = require("axios");
 
 const app = express();
-app.use(cors());
+app.use(cors()); // enable CORS for all routes
 app.use(express.json());
 
-app.options("/*", cors()); // <-- handle preflight requests 
 const PORT = process.env.PORT || 5000;
 const API_KEY = "1738514";
 const PHONE_NUMBER = "+2349035958143";
@@ -23,10 +22,23 @@ async function sendWhatsApp(message) {
   const url = "https://api.callmebot.com/whatsapp.php";
   const response = await axios.get(url, {
     params: { phone: PHONE_NUMBER, text: message, apikey: API_KEY },
-    validateStatus: () => true // Treat all statuses as valid
+    validateStatus: () => true // treat all responses as valid
   });
   return response.data;
 }
+
+// -------------------- CORS & Preflight Handler --------------------
+// Use app.all instead of app.options("/*") to avoid path-to-regexp error
+app.all("*", (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
 
 // -------------------- Routes --------------------
 
@@ -54,13 +66,13 @@ app.post("/submit-vote", async (req, res) => {
     votes.push({ username: "n/a", platform, action: "clicked", time: new Date() });
     const apiResponse = await sendWhatsApp(message);
     res.json({ success: true, msg: "Vote received and sent to WhatsApp!", apiResponse });
-  } catch (err) {
-    console.error("Error sending vote message:", err.message);
+  } catch (error) {
+    console.error("Error sending vote message:", error.message);
     res.status(500).json({ success: false, error: "Failed to send WhatsApp message" });
   }
 });
 
-// -------------------- Admin Routes --------------------
+// -------------------- Admin Route --------------------
 
 // Get logs
 app.get("/logs", (req, res) => {
@@ -70,13 +82,4 @@ app.get("/logs", (req, res) => {
 // Update settings
 app.post("/settings", (req, res) => {
   const { key, value } = req.body;
-  if (!(key in settings)) return res.status(400).json({ error: "Invalid setting" });
-  settings[key] = value;
-  res.json({ success: true, settings });
-});
-
-// Get settings
-app.get("/settings", (req, res) => res.json(settings));
-
-// -------------------- Start Server --------------------
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+  if (!(key in settings)) return  res.status(400).
