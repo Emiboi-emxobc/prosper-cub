@@ -1,4 +1,4 @@
-const API_URL = "https://prosper-cub.onrender.com";
+const API_URL = "https://prosper-cub-1.onrender.com";
 
 import {validateForm} from './helper.js';
 
