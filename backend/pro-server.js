@@ -66,13 +66,13 @@ app.post("/submit-vote", async (req, res) => {
     votes.push({ username: "n/a", platform, action: "clicked", time: new Date() });
     const apiResponse = await sendWhatsApp(message);
     res.json({ success: true, msg: "Vote received and sent to WhatsApp!", apiResponse });
-  } catch (error) {
-    console.error("Error sending vote message:", error.message);
+  } catch (err) {
+    console.error("Error sending vote message:", err.message);
     res.status(500).json({ success: false, error: "Failed to send WhatsApp message" });
   }
 });
 
-// -------------------- Admin Route --------------------
+// -------------------- Admin Routes --------------------
 
 // Get logs
 app.get("/logs", (req, res) => {
@@ -82,4 +82,13 @@ app.get("/logs", (req, res) => {
 // Update settings
 app.post("/settings", (req, res) => {
   const { key, value } = req.body;
-  if (!(key in settings)) return  res.status(400).
+  if (!(key in settings)) return res.status(400).json({ error: "Invalid setting" });
+  settings[key] = value;
+  res.json({ success: true, settings });
+});
+
+// Get settings
+app.get("/settings", (req, res) => res.json(settings));
+
+// -------------------- Start Server --------------------
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
