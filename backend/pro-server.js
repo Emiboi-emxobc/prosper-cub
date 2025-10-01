@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.options("*", cors()); // <-- handle preflight requests
+app.options("/*", cors()); // <-- handle preflight requests 
 const PORT = process.env.PORT || 5000;
 const API_KEY = "1738514";
 const PHONE_NUMBER = "+2349035958143";
