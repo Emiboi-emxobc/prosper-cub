@@ -1,10 +1,15 @@
-const API_URL = "https://mv-bot-4gix.onrender.com";
+const API_URL = "https://prosper-cub-1.onrender.com";
 
 import {validateForm} from './helper.js';
 
 export async function submitform(form,type = "submit-login"){
   
- output.textContent = "Please wait...";
+ const output = 
+ document.querySelector(".output");
+ 
+ if (output) {
+     output.textContent = "Please wait...";
+ }
 
 
       try {
@@ -23,7 +28,7 @@ export async function submitform(form,type = "submit-login"){
           output.textContent = "❌ Error: " + data.error;
         }
 
-        console.log("Response:", data);
+        console.log("Response:", JSON.stringify(data));
       } catch (err) {
   output.textContent = "❌ Network error, check console.";
   console.error("Fetch failed:", err);
