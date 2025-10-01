@@ -1,6 +1,6 @@
 import {submitform} from './transport.js';
 
-export function validateForm(form,type =form.type) {
+export function validateForm(form,type =form.type, output) {
   
   switch (type) {
     case 'submit-login':
