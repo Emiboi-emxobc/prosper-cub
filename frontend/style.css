@@ -1,5 +1,5 @@
 body {
-    font-size: 15pt;
+    font-size: 15px;
 }
 *{
     box-sizing: border-box;
@@ -20,7 +20,9 @@ body {
     color: #000;
     border: 1px solid #ddd;
 }
-
+.output {
+    font-size:0.8rem ;
+}
 header{
     box-shadow: 1px 1px 1px #A4ABB1;
     padding: 10px;

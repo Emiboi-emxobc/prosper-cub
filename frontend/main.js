@@ -4,7 +4,8 @@ window.onload = () =>{
   const metaForm = 
   document.querySelectorAll('.meta-form');
   
-  const output = document.getElementById('output');
+  const output =
+ document.querySelector(".output");;
   
   metaForm.forEach((form) =>{
     if (form) {
