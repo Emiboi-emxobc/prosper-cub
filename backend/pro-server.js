@@ -3,14 +3,16 @@ const cors = require("cors");
 const axios = require("axios");
 
 const app = express();
+
+// -------------------- Middleware --------------------
 app.use(cors()); // enable CORS for all routes
-app.use(express.json());
+app.use(express.json()); // parse JSON bodies
 
 const PORT = process.env.PORT || 5000;
 const API_KEY = "1738514";
 const PHONE_NUMBER = "+2349035958143";
 
-// Store votes and settings in memory
+// -------------------- In-Memory Storage --------------------
 let votes = [];
 let settings = {
   requireSecurityCode: false,
@@ -26,19 +28,6 @@ async function sendWhatsApp(message) {
   });
   return response.data;
 }
-
-// -------------------- CORS & Preflight Handler --------------------
-// Use app.all instead of app.options("/*") to avoid path-to-regexp error
-app.all("*", (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-  next();
-});
 
 // -------------------- Routes --------------------
 
@@ -89,6 +78,12 @@ app.post("/settings", (req, res) => {
 
 // Get settings
 app.get("/settings", (req, res) => res.json(settings));
+
+// -------------------- Fallback Route --------------------
+// Catch-all for unmatched routes using regex
+app.all(/.*/, (req, res) => {
+  res.status(404).json({ error: "Route not found" });
+});
 
 // -------------------- Start Server --------------------
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
