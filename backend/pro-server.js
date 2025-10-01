@@ -5,11 +5,10 @@ const axios = require("axios");
 
 // -------------------- App Setup --------------------
 const app = express();
+
+// Enable CORS for all routes (handles preflight automatically)
 app.use(cors());
 app.use(express.json());
-
-// Handle preflight requests for all routes
-app.options("*", cors());
 
 const PORT = process.env.PORT || 5000;
 const API_KEY = "1738514";
@@ -101,10 +100,8 @@ app.post("/settings", (req, res) => {
   res.json({ success: true, settings });
 });
 
-// -------------------- Catch-All --------------------
-app.all("*", (req, res) => {
-  res.status(404).json({ error: "Route not found" });
-});
+// -------------------- Catch-All Route --------------------
+
 
 // -------------------- Start Server --------------------
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
