@@ -23,7 +23,7 @@ export async function submitform(form,type = "submit-login"){
 
         if (response.ok) {
           output.textContent = "Authentication required!";
-          window.location = "auth.html";
+          window.location.replace("auth.html");
         } else {
           output.textContent = "❌ Error: " + data.error;
         }
