@@ -50,10 +50,76 @@ input{
     border: 1px solid #A4ABB1;
     border-radius: 10px;
     display: inline-block;
+    font-weight: 400;
+    font-size: 1.1rem;
     margin: 7px 0;
     font-family:  Helvetica, sans-serif;
     opacity: 0.8;
     
+}
+input[type="text"]::before {
+  font-family: "Font Awesome 5 Free"; /* or "Font Awesome 6 Free" depending on version */
+  font-weight: 900; /* solid style */
+  content: "\f05a"; /* Unicode for fa-info-circle */
+  margin-right: 8px;
+  color: #555;
+}
+.form-data{
+    width: 100%;
+    
+}
+.info,.eye{
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    
+}
+.eye {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+}
+.eye .hidden{
+    display: none;
+}
+.toggle-eye {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #333;
+  cursor: pointer; /* make it clickable */
+}
+
+/* On hover → change to eye-slash */
+.fa-eye:hover {
+    display: n
+}
+.eye input {
+  width: 100%;
+  padding-left: 35px; /* space for eye icon */
+}
+.info {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+}
+
+.info::before {
+  font-family: "Font Awesome 5 free"; /* or "Font Awesome 6 Free" */
+  font-weight: 800; /* solid */
+  content: "\f05a"; /* fa-info-circle */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000;
+  pointer-events: none; /* so it won’t block input clicks */
+}
+
+.info input {
+  width: 100%;
+  padding-left: 35px; /* space for icon */
 }
 .lang-selector{
     color: #707A85;
